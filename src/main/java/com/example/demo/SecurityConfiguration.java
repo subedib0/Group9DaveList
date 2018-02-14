@@ -27,7 +27,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
         auth.inMemoryAuthentication().
                 withUser("dave").password("beastmaster").authorities("ADMIN")
                 .and()
-                .withUser("user").password("password").authorities("USER");
+                .withUser("User").password("password").authorities("USER");
         ;
     }
 }
