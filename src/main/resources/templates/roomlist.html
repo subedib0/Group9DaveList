@@ -24,6 +24,8 @@
     </div>
 </nav>
 
+<p>th:user="(${role}=='admin')? 'do this':otherwise do this</p>
+Use Switches
 <table>
     <tr th:each="room : ${room}">
 
@@ -38,8 +40,8 @@
 
         <th>Price:</th>
         <td th:text="${room.price}"></td>
-
-
+Dave needs Add and Edit
+Both need to be able to see private
     </tr>
 </table>
 
