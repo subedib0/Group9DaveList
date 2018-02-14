@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8" />
+    <title>userinfo</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" />
+    <link rel="stylesheet" type="text/css" href="/css/help.css"/>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</head>
+<body>
+
+<nav class="navbar navbar-default">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <a class="navbar-brand" href="/">Dave's room list</a>
+        </div>
+        <ul class="nav navbar-nav">
+            <li><a href="/">Room List</a></li>
+            <li><a href="/loginpage">Login</a></li>
+        </ul>
+    </div>
+</nav>
+
+<form action = "#"
+      th:action="@{/processroom}"
+      th:object="${room}"
+      method="post">
+    <input type="hidden" th:field="*{id}" />
+    Description:<input type="text" th:field= "*{description}" />
+    <span th:if="${#fields.hasErrors('description')}"
+          th:errors="*{description}"></span><br/>
+    Rules :<input type="text" th:field= "*{rules}" />
+    <span th:if="${#fields.hasErrors('rules')}"
+          th:errors="*{rules}"></span><br/>
+    Address :<input type="text" th:field= "*{roomAddress}" />
+    <span th:if="${#fields.hasErrors('roomAddress')}"
+          th:errors="*{roomAddress}"></span><br/>
+    Wifi :<input type="text" th:field= "*{wifi}" />
+    <span th:if="${#fields.hasErrors('wifi')}"
+          th:errors="*{wifi}"></span><br/>
+    Cable :<input type="text" th:field= "*{cable}" />
+    <span th:if="${#fields.hasErrors('cable')}"
+          th:errors="*{cable}"></span><br/>
+    City :<input type="text" th:field= "*{city}" />
+    <span th:if="${#fields.hasErrors('city')}"
+          th:errors="*{city}"></span><br/>
+    Private Bathroom :<input type="text" th:field= "*{privBathroom}" />
+    <span th:if="${#fields.hasErrors('privBathroom')}"
+          th:errors="*{privBathroom}"></span><br/>
+    Price :<input type="text" th:field= "*{price}" />
+    <span th:if="${#fields.hasErrors('price')}"
+          th:errors="*{price}"></span><br/>
+    State :<input type="text" th:field= "*{state}" />
+    <span th:if="${#fields.hasErrors('state')}"
+          th:errors="*{state}"></span><br/>
+    Available:<input type="text" th:field= "*{isRented}" />
+    <span th:if="${#fields.hasErrors('isRented')}"
+          th:errors="*{isRented}"></span><br/>
+    Private :<input type="text" th:field= "*{isPrivate}" />
+    <span th:if="${#fields.hasErrors('isPrivate')}"
+          th:errors="*{isPrivate}"></span><br/>
+
+
+    <br />
+    <input type="submit" values="Submit" />
+</form>
+</body>
+</html>
