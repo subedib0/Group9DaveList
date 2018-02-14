@@ -30,4 +30,4 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .withUser("User").password("password").authorities("USER");
         ;
     }
-}
+} //
