@@ -19,12 +19,8 @@ public class HomeController {
 
     @GetMapping("/")
     public String listrooms(Model model) {
-        /*if (user == logged_in){
-            if (user = dave){model.addAttribute("room", roomList.findAll();}
-            else{model.addAttribute("room", roomList.findAllByisRented(false));}
-        else{model.addAttribute("room", roomList.findAllByisRentedAndisPrivate(false)); }}//Not correctly flagging isRented
-        */
-        model.addAttribute("publicroom", roomList.findAllByisRentedAndisPrivate(false)))
+
+        model.addAttribute("publicroom", roomList.findAll());
         model.addAttribute("fullroom", roomList.findAll());
         return "roomlist";
     }
@@ -56,9 +52,11 @@ public class HomeController {
     }
 
     @RequestMapping("/edit/{id}")
-    public String roomDetails(@PathVariable("id") long id, Model model){
+    public String roomEdit(@PathVariable("id") long id, Model model) {
         model.addAttribute("room", roomList.findOne(id));
         return "/roomdetails";
+
+    }
 
 
 }
