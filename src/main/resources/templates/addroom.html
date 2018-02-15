@@ -18,7 +18,7 @@
         </div>
         <ul class="nav navbar-nav">
             <li><a href="/">Room List</a></li>
-            <li><a href="/loginpage">Login</a></li>
+            <li><a href="/login">Login</a></li>
         </ul>
     </div>
 </nav>
@@ -55,12 +55,12 @@
     State :<input type="text" th:field= "*{state}" />
     <span th:if="${#fields.hasErrors('state')}"
           th:errors="*{state}"></span><br/>
-    Available:<input type="text" th:field= "*{isRented}" />
-    <span th:if="${#fields.hasErrors('isRented')}"
-          th:errors="*{isRented}"></span><br/>
-    Private :<input type="text" th:field= "*{isPrivate}" />
-    <span th:if="${#fields.hasErrors('isPrivate')}"
-          th:errors="*{isPrivate}"></span><br/>
+    Available:<input type="boolean" th:field= "*{rented}" />
+    <span th:if="${#fields.hasErrors('rented')}"
+          th:errors="*{rented}"></span><br/>
+    Private :<input type="boolean" th:field= "*{privateListing}" />
+    <span th:if="${#fields.hasErrors('privateListing')}"
+          th:errors="*{privateListing}"></span><br/>
 
 
     <br />

@@ -19,16 +19,14 @@
         </div>
         <ul class="nav navbar-nav">
             <li class="active" ><a href="/">Room List</a></li>
-            <li><a href="/loginpage">Login</a></li>
+            <li><a href="/login">Login</a></li>
         </ul>
     </div>
 </nav>
 
 
 <table>
-
-    <div th:switch="${user.role}">
-        <p th:case="'anonymous'"> Please log in to see private rooms
+        <p sec:authorize="hasAuthority('ANONYMOUS')"> Please log in to see private rooms
             <tr th:each="room : ${publicroom}">
 
                 <th>Address:</th>
@@ -45,7 +43,7 @@
                 <a th:href="@{/details/{id}(id=${room.id})}">More details</a>
             </tr>
         </p>
-        <p th:case="'user'">Thank you for logging in.
+        <p sec:authorize="hasAuthority('USER')">Thank you for logging in.
             <tr th:each="room : ${fulllroom}">
 
                 <th>Address:</th>
@@ -62,7 +60,7 @@
                 <a th:href="@{/details/{id}(id=${room.id})}">More details</a>
             </tr>
         </p>
-        <p th:case="'admin'"> I'm afraid I can't let you do that.
+        <p sec:authorize="hasAuthority('ADMIN')"> I'm afraid I can't let you do that.
 
             <a href="/addroom">Add a room listing</a>
 
@@ -84,7 +82,7 @@
             </tr>
                 <br/>
         </p>
-    </div>
+
 
 </table>
 

@@ -97,8 +97,8 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 
 
 //                .access("hasAuthority('ROLE_USER') or hasAuthority('ROLE_ADMIN')")
-                .antMatchers("/admin").access("hasAuthority('ADMIN')")
-                .antMatchers("/").access("hasAuthority('user')")
+                .antMatchers("/checkuser").access("hasAuthority('ADMIN')")
+                .antMatchers("/checkuser").access("hasAuthority('USER')")
                 .anyRequest().authenticated()
                 .and()
                 .formLogin().loginPage("/login").permitAll()
@@ -106,7 +106,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .logout()
                 .logoutRequestMatcher(
                         new AntPathRequestMatcher("/logout"))
-                .logoutSuccessUrl("/login").permitAll().permitAll()
+                .logoutSuccessUrl("/").permitAll().permitAll()
                 .and()
                 .httpBasic();
 

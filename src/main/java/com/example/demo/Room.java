@@ -41,10 +41,9 @@ public class Room {
     @NotEmpty
     private String state;
 
-    private boolean isRented;
+    private boolean rented;
 
-
-    private boolean isPrivate;
+    private boolean privateListing;
 
 
     public long getId() {
@@ -128,18 +127,18 @@ public class Room {
     }
 
     public boolean isRented() {
-        return isRented;
+        return rented;
     }
 
     public void setRented(boolean rented) {
-        isRented = rented;
+        this.rented = rented;
     }
 
-    public boolean isPrivate() {
-        return isPrivate;
+    public boolean isPrivateListing() {
+        return privateListing;
     }
 
-    public void setPrivate(boolean aPrivate) {
-        isPrivate = aPrivate;
+    public void setPrivateListing(boolean privateListing) {
+        this.privateListing = privateListing;
     }
 }

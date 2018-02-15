@@ -9,6 +9,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 
+import javax.jws.Oneway;
 import javax.validation.Valid;
 
 @Controller
@@ -17,16 +18,21 @@ public class HomeController {
     @Autowired
     RoomRepository roomList;
 
+    @Autowired
+    UserRepository userList;
+
     @GetMapping("/")
     public String listrooms(Model model) {
-        /*if (User == logged_in){
-            if (User = dave){model.addAttribute("room", roomList.findAll();}
-            else{model.addAttribute("room", roomList.findAllByisRented(false));}
-        else{model.addAttribute("room", roomList.findAllByisRentedAndisPrivate(false)); }}//Not correctly flagging isRented
-        */
-        model.addAttribute("publicroom", roomList.findAllByisRentedAndisPrivate(false)))
+
+        model.addAttribute("publicroom", roomList.findAll());
         model.addAttribute("fullroom", roomList.findAll());
         return "roomlist";
+    }
+    @GetMapping("/usercheck")
+    public String Usercheck(Model model) {
+
+
+        return "usercheck";
     }
 
     @GetMapping("/addroom")
@@ -42,7 +48,7 @@ public class HomeController {
         }
         room.setRented(false);
         roomList.save(room);
-        return "redirect:/listrooms";
+        return "redirect:/";
     }
     @RequestMapping("/details/{id}")
     public String roomDetails(@PathVariable("id") long id, Model model){
@@ -50,15 +56,17 @@ public class HomeController {
         return "/roomdetails";
     }
 
-    @GetMapping("/loginpage")
-    public String loginpage(Model model){
+    @GetMapping("/login")
+    public String loginpages(Model model){
         return "login";
     }
 
     @RequestMapping("/edit/{id}")
-    public String roomDetails(@PathVariable("id") long id, Model model){
+    public String roomEdit(@PathVariable("id") long id, Model model) {
         model.addAttribute("room", roomList.findOne(id));
         return "/roomdetails";
+
+    }
 
 
 }
