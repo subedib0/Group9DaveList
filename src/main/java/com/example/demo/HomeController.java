@@ -24,7 +24,8 @@ public class HomeController {
             else{model.addAttribute("room", roomList.findAllByisRented(false));}
         else{model.addAttribute("room", roomList.findAllByisRentedAndisPrivate(false)); }}//Not correctly flagging isRented
         */
-        model.addAttribute("room", roomList.findAll());
+        model.addAttribute("publicroom", roomList.findAllByisRentedAndisPrivate(false)))
+        model.addAttribute("fullroom", roomList.findAll());
         return "roomlist";
     }
 
@@ -43,7 +44,7 @@ public class HomeController {
         roomList.save(room);
         return "redirect:/listrooms";
     }
-    @RequestMapping("/checkout/{id}")
+    @RequestMapping("/details/{id}")
     public String roomDetails(@PathVariable("id") long id, Model model){
         model.addAttribute("room", roomList.findOne(id));
         return "/roomdetails";
@@ -53,4 +54,11 @@ public class HomeController {
     public String loginpage(Model model){
         return "login";
     }
+
+    @RequestMapping("/edit/{id}")
+    public String roomDetails(@PathVariable("id") long id, Model model){
+        model.addAttribute("room", roomList.findOne(id));
+        return "/roomdetails";
+
+
 }
