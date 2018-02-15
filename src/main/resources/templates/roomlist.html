@@ -24,25 +24,68 @@
     </div>
 </nav>
 
-<p>th:user="(${role}=='admin')? 'do this':otherwise do this</p>
-Use Switches
+
 <table>
-    <tr th:each="room : ${room}">
 
-        <th>Address:</th>
-        <td th:text="${room.roomAddress}"></td>
+    <div th:switch="${user.role}">
+        <p th:case="'anonymous'"> Please log in to see private rooms
+            <tr th:each="room : ${publicroom}">
 
-        <th>City:</th>
-        <td th:text="${room.city}"></td>
+                <th>Address:</th>
+                <td th:text="${room.roomAddress}"></td>
 
-        <th>State:</th>
-        <td th:text="${room.state}"></td>
+                <th>City:</th>
+                <td th:text="${room.city}"></td>
 
-        <th>Price:</th>
-        <td th:text="${room.price}"></td>
-Dave needs Add and Edit
-Both need to be able to see private
-    </tr>
+                <th>State:</th>
+                <td th:text="${room.state}"></td>
+
+                <th>Price:</th>
+                <td th:text="${room.price}"></td>
+                <a th:href="@{/details/{id}(id=${room.id})}">More details</a>
+            </tr>
+        </p>
+        <p th:case="'user'">Thank you for logging in.
+            <tr th:each="room : ${fulllroom}">
+
+                <th>Address:</th>
+                <td th:text="${room.roomAddress}"></td>
+
+                <th>City:</th>
+                <td th:text="${room.city}"></td>
+
+                <th>State:</th>
+                <td th:text="${room.state}"></td>
+
+                <th>Price:</th>
+                <td th:text="${room.price}"></td>
+                <a th:href="@{/details/{id}(id=${room.id})}">More details</a>
+            </tr>
+        </p>
+        <p th:case="'admin'"> I'm afraid I can't let you do that.
+
+            <a href="/addroom">Add a room listing</a>
+
+            <tr th:each="room : ${fullroom}">
+
+                <th>Address:</th>
+                <td th:text="${room.roomAddress}"></td>
+
+                <th>City:</th>
+                <td th:text="${room.city}"></td>
+
+                <th>State:</th>
+                <td th:text="${room.state}"></td>
+
+                <th>Price:</th>
+                <td th:text="${room.price}"></td>
+                <a th:href="@{/details/{id}(id=${room.id})}">More details</a>
+                <a th:href="@{/edit/{id}(id=${room.id})}">Edit room</a>
+            </tr>
+                <br/>
+        </p>
+    </div>
+
 </table>
 
 
